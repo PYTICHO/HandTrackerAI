@@ -23,9 +23,6 @@ python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 PYTHONPATH=src python3 -m handtracker_ai.main
-
-source .venv311/bin/activate
-PYTHONPATH=src python -m handtracker_ai.main
 ```
 
 

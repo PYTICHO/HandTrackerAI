@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 import tkinter as tk
 from pathlib import Path
 
@@ -12,8 +13,18 @@ from .config import AppConfig
 from .hand_tracker import HandTracker
 
 
-ASSETS_DIR = Path(__file__).resolve().parent / "pngfortutor"
-WELCOME_GIF = Path("/Users/sb/Desktop/13321.gif")
+def _resource_root() -> Path:
+    if getattr(sys, "frozen", False):
+        meipass = getattr(sys, "_MEIPASS", None)
+        if meipass:
+            return Path(meipass)
+    return Path(__file__).resolve().parent
+
+
+ASSETS_DIR = _resource_root() / "handtracker_ai" / "pngfortutor"
+if not ASSETS_DIR.exists():
+    ASSETS_DIR = _resource_root() / "pngfortutor"
+WELCOME_GIF = ASSETS_DIR / "welcome.gif"
 
 PALETTE = {
     "bg": "#050505",
